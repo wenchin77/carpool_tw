@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar_logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar_links {
+  display: flex;
+  margin: 0;
+}
+
+.navbar_link {
+  margin-right: 1rem;
+  text-align: left; /* Add this line */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .navbar_links {
+    margin-top: 1rem;
+  }
+
+  .navbar_link {
+    margin: 0 0.5rem 0 0;
+  }
+}

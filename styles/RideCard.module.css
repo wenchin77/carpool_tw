@@ -1,0 +1,24 @@
+.ride {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.ride:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ride_locations {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cardAction {
+  margin-top: 1rem;
+}
