@@ -16,7 +16,7 @@ export default function Footer() {
     alert("還沒寫好");
   }
   return (
-    <footer className={styles.footer}>
+    <footer>
       <div className={styles.container}>
         <nav className={styles.footer_nav}>
           <ul className={styles.footer_links}>

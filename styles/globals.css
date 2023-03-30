@@ -57,11 +57,13 @@ nav a {
 
 /* Footer styles */
 footer {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
   text-align: center;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
