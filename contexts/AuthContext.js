@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { auth } from "@/firebase/firebase-config";
+import { setData } from "@/firebase/firebase-functions";
+
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -31,11 +33,23 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const saveUserToDatabase = (user) => {
+    setData("users", user.uid, {
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user?.photoURL,
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setUserPhoto(user?.photoURL);
       setLoading(false);
+
+      if (user) {
+        saveUserToDatabase(user);
+      }
     });
 
     return unsubscribe;
