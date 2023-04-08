@@ -7,11 +7,6 @@
   transition: all 0.2s ease-in-out;
 }
 
-.ride:hover {
-  transform: translateY(-0.25rem);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
 .ride_locations {
   display: flex;
   flex-direction: row;
