@@ -2,9 +2,6 @@ import Link from "next/link";
 import styles from "@/styles/Navbar.module.css";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useContext } from "react";
-
-const logo = "共乘台灣";
-
 export default function Navbar() {
   const { loading, currentUser, userPhoto, signInWithGoogle, signOutGoogle } =
     useContext(AuthContext);
@@ -13,10 +10,15 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navbar_logo}>{logo}</div>
+      <div className={styles.navbar_logo}>
+        <Link href="/">共乘台灣</Link>
+      </div>
       <ul className={styles.navbar_links}>
         <li className={styles.navbar_link}>
-          <Link href="/publish-a-ride">發布共乘資訊</Link>
+          <Link href="/">找司機</Link>
+        </li>
+        <li className={styles.navbar_link}>
+          <Link href="/publish-a-ride">找乘客</Link>
         </li>
         {loading ? (
           <p>Loading...</p>
