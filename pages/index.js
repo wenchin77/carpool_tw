@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { getData } from "@/firebase/firebase-functions";
-import Head from "next/head";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
 import RideCard from "@/components/RideCard";
 
 export async function getServerSideProps() {
@@ -28,21 +26,13 @@ export default function Home(ridesData) {
   }, []);
 
   return (
-    <div className="container">
-      <Head>
-        <title>共乘台灣</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Navbar></Navbar>
-      <main>
-        <h1>所有共乘行程</h1>
-        <ul>
-          {rides.map((ride) => (
-            <RideCard key={ride.id} ride={ride}></RideCard>
-          ))}
-        </ul>
-      </main>
-      <Footer></Footer>
-    </div>
+    <Layout title="共乘台灣">
+      <h1>所有共乘行程</h1>
+      <ul>
+        {rides.map((ride) => (
+          <RideCard key={ride.id} ride={ride}></RideCard>
+        ))}
+      </ul>
+    </Layout>
   );
 }
