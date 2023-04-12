@@ -1,19 +1,13 @@
 import { useState, useEffect } from "react";
-import { getData } from "@/firebase/firebase-functions";
+import { getDataListen } from "@/firebase/firebase-functions";
 import Layout from "@/components/Layout";
 import RideCard from "@/components/RideCard";
 
-export async function getServerSideProps() {
-  let ridesSnapshot = await getData("rides");
-  let ridesData = ridesSnapshot.val();
-  return { props: ridesData };
-}
-
-export default function Home(ridesData) {
+export default function Home() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    const fetchRides = async () => {
+    getDataListen("rides", (ridesData) => {
       const ridesArray = Object.keys(ridesData).map((key) => {
         return {
           id: key,
@@ -21,8 +15,7 @@ export default function Home(ridesData) {
         };
       });
       setRides(ridesArray);
-    };
-    fetchRides();
+    });
   }, []);
 
   return (
