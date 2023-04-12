@@ -22,7 +22,6 @@ export default function PublishARide() {
   const [comments, setComments] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
 
   const router = useRouter();
 
@@ -70,9 +69,7 @@ export default function PublishARide() {
 
     setData("rides", rideId, rideData);
 
-    setShowPopup(true);
     setTimeout(() => {
-      setShowPopup(false);
       router.push("/");
     }, 3000);
   };
@@ -204,11 +201,14 @@ export default function PublishARide() {
                 onChange={(e) => setComments(e.target.value)}
               />
             </label>
-            <button type="submit" className="primary" disabled={isSubmitting}>
-              {isSubmitting ? "發布中..." : "發布"}
-            </button>
+            {isSubmitting ? (
+              <p>發布中...</p>
+            ) : (
+              <button type="submit" className="primary">
+                發布
+              </button>
+            )}
           </form>
-          {showPopup && <div>成功發布行程！</div>}
         </>
       ) : (
         <div>
