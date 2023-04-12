@@ -10,10 +10,12 @@
 .ride_locations {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.cardAction {
-  margin-top: 1rem;
+.ride button {
+  display: block;
+  margin: 20px auto 0;
 }
