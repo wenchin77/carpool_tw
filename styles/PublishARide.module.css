@@ -1,0 +1,28 @@
+.publish_form label {
+  display: block;
+}
+
+.publish_form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+.publish_form select {
+  appearance: none;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 50%;
+  cursor: pointer;
+}
+
+.publish_form button {
+  display: block;
+  margin: 20px auto 0;
+}
