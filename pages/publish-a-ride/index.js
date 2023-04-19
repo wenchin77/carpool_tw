@@ -1,13 +1,12 @@
 import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "@/contexts/AuthContext";
+import { UserContext } from "@/contexts/UserContext";
 import { getDataOnce, setData } from "@/firebase/firebase-functions";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
 import styles from "@/styles/PublishARide.module.css";
 
 export default function PublishARide() {
-  const { currentUser } = useContext(AuthContext);
-
+  const { currentUser } = useContext(UserContext);
   const [locations, setLocations] = useState([]);
   const [departureCity, setDepartureCity] = useState("");
   const [departureDist, setDepartureDist] = useState("");

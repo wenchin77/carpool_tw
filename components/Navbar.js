@@ -1,12 +1,27 @@
 import Link from "next/link";
 import styles from "@/styles/Navbar.module.css";
-import { AuthContext } from "@/contexts/AuthContext";
-import { useContext } from "react";
-export default function Navbar() {
-  const { loading, currentUser, userPhoto, signInWithGoogle, signOutGoogle } =
-    useContext(AuthContext);
+import { UserContext } from "@/contexts/UserContext";
+import { useEffect, useContext } from "react";
 
-  // TODO: move 登出 to /profile
+export default function Navbar() {
+  const { loading, currentUser, handleCredentialResponse } =
+    useContext(UserContext);
+
+  const showGoogleLoginButton = () => {
+    google.accounts.id.initialize({
+      client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      callback: handleCredentialResponse,
+    });
+    google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+    google.accounts.id.prompt();
+  };
+
+  useEffect(() => {
+    showGoogleLoginButton();
+  }, []);
 
   return (
     <nav className={styles.navbar}>
@@ -22,33 +37,17 @@ export default function Navbar() {
         </li>
         {loading ? (
           <p>Loading...</p>
-        ) : currentUser ? (
+        ) : (
           <>
-            <li className={styles.navbar_link}>
-              <Link href="#" onClick={signOutGoogle}>
-                登出
-              </Link>
-            </li>
-            {userPhoto ? (
-              <li>
-                <Link href="/profile">
-                  <div className={styles.navbar_profile_photo}>
-                    <img src={userPhoto} alt="User Profile" />
-                  </div>
-                </Link>
-              </li>
-            ) : (
+            {currentUser && (
               <li className={styles.navbar_link}>
                 <Link href="/my-rides">我的行程</Link>
               </li>
             )}
+            <li className={styles.navbar_link}>
+              <div id="buttonDiv"></div>
+            </li>
           </>
-        ) : (
-          <li className={styles.navbar_link}>
-            <Link href="#" onClick={signInWithGoogle}>
-              登入
-            </Link>
-          </li>
         )}
       </ul>
     </nav>
