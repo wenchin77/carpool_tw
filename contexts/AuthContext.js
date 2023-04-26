@@ -16,8 +16,19 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [userPhoto, setUserPhoto] = useState("");
 
+  function showBrowserAlertOnce() {
+    const isAlertShown = sessionStorage.getItem("alertShown");
+    if (!isAlertShown) {
+      alert(
+        "請以網路瀏覽器 (Chrome, Safari...) 而非 app 內建瀏覽器開啟這個網頁，才能成功使用 Google 登入！"
+      );
+      sessionStorage.setItem("alertShown", "true");
+    }
+  }
+
   async function signInWithGoogle() {
     try {
+      showBrowserAlertOnce();
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
     } catch (error) {
